@@ -1,0 +1,376 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+
+@layer base {
+  :root {
+    /* Gentle Precision light theme colors */
+    --background: 0 0% 100%;
+    --foreground: 219 42% 11%;        /* Cool gray 900 in HSL */
+
+    --card: 0 0% 100%;
+    --card-foreground: 219 42% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 219 42% 11%;
+
+    --primary: 212 78% 57%;           /* Gentle blue - increased saturation */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 25% 96%;         /* Cool gray 100 in HSL */
+    --secondary-foreground: 219 42% 11%;
+
+    --muted: 219 19% 97%;            /* Cool gray 50 in HSL */
+    --muted-foreground: 210 14% 44%;  /* Cool gray 500 in HSL */
+
+    --accent: 142 65% 50%;           /* Warm green - reduced saturation for balance */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 343 85% 69%;      /* Light coral #FF6B84 in HSL */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 31% 89%;           /* Cool gray 200 in HSL */
+    --input: 210 31% 89%;            /* Cool gray 200 in HSL */
+    --ring: 212 71% 57%;             /* Gentle blue for focus */
+
+    --radius: 12px;                  /* Increased from 8px for friendlier feel */
+
+    /* Sidebar colors - Gentle Precision */
+    --sidebar-background: 219 19% 97%;  /* Cool gray 50 */
+    --sidebar-foreground: 219 42% 11%;
+    --sidebar-primary: 212 71% 57%;     /* Gentle blue */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 25% 96%;      /* Cool gray 100 */
+    --sidebar-accent-foreground: 219 42% 11%;
+    --sidebar-border: 210 31% 89%;      /* Cool gray 200 */
+    --sidebar-ring: 212 71% 57%;        /* Gentle blue */
+
+    /* Accessibility font scaling variables */
+    --font-scale: 1;
+    --line-height-scale: 1;
+  }
+
+  .dark {
+    /* Gentle Precision dark theme colors */
+    --background: 219 42% 11%;        /* Cool gray 900 */
+    --foreground: 219 19% 97%;        /* Cool gray 50 */
+
+    --card: 217 39% 18%;              /* Cool gray 800 - elevated surface */
+    --card-foreground: 219 19% 97%;
+
+    --popover: 217 39% 18%;           /* Cool gray 800 - elevated surface */
+    --popover-foreground: 219 19% 97%;
+
+    --primary: 212 71% 57%;           /* Gentle blue - consistent across themes */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 39% 18%;         /* Cool gray 800 */
+    --secondary-foreground: 219 19% 97%;
+
+    --muted: 215 35% 21%;            /* Cool gray 700 */
+    --muted-foreground: 213 27% 57%;  /* Cool gray 400 */
+
+    --accent: 142 71% 45%;           /* Warm green - consistent across themes */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 343 85% 69%;      /* Light coral - consistent across themes */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 30% 34%;           /* Cool gray 600 */
+    --input: 214 30% 34%;            /* Cool gray 600 */
+    --ring: 212 71% 57%;             /* Gentle blue for focus */
+
+    /* Sidebar colors - Gentle Precision dark */
+    --sidebar-background: 219 42% 11%;  /* Cool gray 900 */
+    --sidebar-foreground: 219 19% 97%;
+    --sidebar-primary: 212 71% 57%;     /* Gentle blue */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 39% 18%;      /* Cool gray 800 */
+    --sidebar-accent-foreground: 219 19% 97%;
+    --sidebar-border: 214 30% 34%;      /* Cool gray 600 */
+    --sidebar-ring: 212 71% 57%;        /* Gentle blue */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Debug helper to see color values */
+  button {
+    position: relative;
+  }
+  
+  button:after {
+    content: attr(data-debug);
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: 10px;
+    color: red;
+    pointer-events: none;
+    z-index: 1000;
+  }
+}
+
+/* Custom sidebar width override */
+:root {
+  --sidebar-width: 14rem;
+  --sidebar-width-mobile: 16rem;
+}
+
+/* Navigation glassmorphism styles for performance */
+.nav-transparent {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(2px) saturate(1) contrast(1);
+  -webkit-backdrop-filter: blur(2px) saturate(1) contrast(1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-solid {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(1.8) contrast(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8) contrast(1.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Font optimization for smooth loading - prevent FOIT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+/* Prevent layout shifts during font loading */
+* {
+  font-display: swap;
+}
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap');
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Accessibility Enhancements */
+@layer base {
+  /* High contrast mode */
+  .high-contrast {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --primary: 240 100% 30%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 10%;
+    --accent: 240 100% 30%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 40%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 240 100% 30%;
+  }
+
+  .dark.high-contrast {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+    --primary: 240 100% 70%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 90%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 85%;
+    --accent: 240 100% 70%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 100% 70%;
+    --destructive-foreground: 0 0% 0%;
+    --border: 0 0% 80%;
+    --input: 0 0% 80%;
+    --ring: 240 100% 70%;
+  }
+
+  /* Enhanced focus rings */
+  .enhanced-focus *:focus-visible {
+    outline: 3px solid hsl(var(--ring)) !important;
+    outline-offset: 3px !important;
+  }
+
+  /* Reduced motion */
+  .reduce-motion *,
+  .reduce-motion *::before,
+  .reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Reduced motion media query for system preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    .nav-transparent, .nav-solid {
+      transition: none !important;
+    }
+  }
+
+  /* High contrast mode */
+  @media (prefers-contrast: high) {
+    .nav-transparent, .nav-solid {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+  }
+
+  /* Font scaling */
+  .font-scaled {
+    font-size: calc(1rem * var(--font-scale));
+    line-height: calc(1.5 * var(--line-height-scale));
+  }
+
+  /* Screen reader only content */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+/* Safari-compatible background-clip utilities */
+@layer utilities {
+  .bg-clip-text-safari {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: #4A90E2 !important; /* Gentle Blue fallback for Safari */
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* For browsers that fully support background-clip */
+  @supports (background-clip: text) {
+    .bg-clip-text-safari {
+      color: transparent !important;
+    }
+  }
+}
+
+/* Line clamp utilities for text truncation */
+@layer utilities {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.3;
+    max-height: calc(1.3em * 2);
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-height: 1.3;
+    max-height: calc(1.3em * 3);
+  }
+  
+  /* Improved text wrapping for mobile */
+  .break-words {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
+
+/* Enhanced Display Typography */
+@layer utilities {
+  .text-display-hero {
+    font-family: theme('fontFamily.display');
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    word-spacing: 0.05em;
+    /* Advanced font features */
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    font-variant-ligatures: common-ligatures;
+    /* Text rendering optimization */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Subtle text shadow for depth */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+  
+  .text-display-hero-emphasis {
+    font-family: theme('fontFamily.display');
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    font-weight: 600;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    word-spacing: 0.06em;
+    /* Advanced font features */
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    font-variant-ligatures: common-ligatures;
+    /* Text rendering optimization */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Enhanced text shadow for emphasis */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(20, 117, 255, 0.03);
+  }
+  
+  .text-display-hero-light {
+    font-family: theme('fontFamily.display');
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    word-spacing: 0.05em;
+    /* Advanced font features */
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    font-variant-ligatures: common-ligatures;
+    /* Text rendering optimization */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Subtle text shadow for depth */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+}
+
