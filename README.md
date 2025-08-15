@@ -39,38 +39,6 @@ comprehensive mental health monitoring application designed for individuals mana
 
 ---
 
-## quick start
-
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
-
-<div style="border: 1px solid #e1e5e9; border-radius: 8px; padding: 16px;">
-
-### try it now
-```bash
-# live demo access
-url: https://bipolar-guardian.dev
-email: tester01@bipolar-guardian.dev
-password: Test1234!
-```
-
-</div>
-
-<div style="border: 1px solid #e1e5e9; border-radius: 8px; padding: 16px;">
-
-### local development
-```bash
-# one-click setup
-npm install && npm run dev
-# → localhost:8080
-# → docs/developer/ for details
-```
-
-</div>
-
-</div>
-
----
-
 ## choose your path
 
 **👨‍💻 developers** — *contribute or explore the tech*  
