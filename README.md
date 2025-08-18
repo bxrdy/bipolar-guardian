@@ -132,15 +132,7 @@ npm run dev
 ```
 
 ### Testing & Validation
-Navigate to `/testing` for the comprehensive validation framework:
-
-- **🔍 Validation** - System health checks and runlists
-- **📊 Accuracy** - AI performance and regression analysis  
-- **🤖 Guardian** - Conversational AI quality assurance
-- **📄 Documents** - Medical document processing validation
-- **⚙️ Controls** - Feature management and data generation
-- **🗄️ Tables** - Database integrity inspection
-- **❌ Errors** - Exception tracking and debugging
+Navigate to `/testing` for the comprehensive validation framework. See [complete setup guide](docs/developer/SETUP.md) for detailed testing information.
 
 ## System Architecture
 
