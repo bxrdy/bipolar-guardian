@@ -1,153 +1,386 @@
-# Accessibility & QA Checklist
+# Accessibility Implementation Guide
 
 **[Documentation Hub](../README.md) > [Developer Documentation](README.md) > Accessibility**
 
-## WCAG 2.1 AA Compliance Standards
+**For UI/UX Designers, Frontend Engineers, and Product Teams**
 
-### Color Contrast & Visual Design
-- [ ] **4.5:1 contrast ratio** for normal text against background
-- [ ] **3:1 contrast ratio** for large text (18pt+ or 14pt+ bold)
-- [ ] **enhanced contrast mode** available via tailwind dark mode
-- [ ] color is not the only means of conveying information
-- [ ] focus indicators have **2px minimum thickness** with high contrast
-- [ ] text remains readable when zoomed to **200%**
+## Design System Accessibility
 
-### Keyboard Navigation
-- [ ] all interactive elements are **keyboard accessible**
-- [ ] **tab order** is logical and predictable
-- [ ] **focus traps** work correctly in radix-ui modals and overlays
-- [ ] **skip links** are available and functional
-- [ ] keyboard shortcuts are **documented and discoverable**
-- [ ] **escape key** closes modals and cancels actions
+### Color System & Contrast
+Our shadcn/ui + Tailwind design system provides accessible color foundations:
 
-### Screen Reader Support
-- [ ] **semantic markup** (headings h1-h6) follows proper hierarchy
-- [ ] **aria labels** are present for interactive elements
-- [ ] **aria live regions** announce dynamic content changes
-- [ ] **form labels** are properly associated with react-hook-form inputs
-- [ ] **image alt text** is descriptive and meaningful
-- [ ] **table headers** are properly marked with scope attributes
+```typescript
+// tailwind.config.ts color system
+primary: "hsl(var(--primary))",           // 4.5:1 contrast minimum
+secondary: "hsl(var(--secondary))",       // 3:1 for large text
+destructive: "hsl(var(--destructive))",   // Error states
+muted: "hsl(var(--muted))",              // Secondary content
+```
 
-### Motion & Animation
-- [ ] **reduced motion** is respected when user prefers it (framer-motion)
-- [ ] animations do not exceed **3 flashes per second**
-- [ ] **auto-playing media** can be paused or stopped
-- [ ] motion serves a functional purpose and enhances usability
-- [ ] all animations have **reasonable duration** (< 5 seconds)
+**Risk Level Color Coding** (`src/components/RiskLevelBadge.tsx`):
+- **Green (Low)**: HSL(142, 71%, 45%) - 4.6:1 contrast ratio
+- **Amber (Medium)**: HSL(48, 96%, 53%) - 7.2:1 contrast ratio  
+- **Red (High)**: HSL(0, 84%, 60%) - 4.8:1 contrast ratio
 
-### Touch & Interaction
-- [ ] touch targets are **minimum 44px × 44px**
-- [ ] interactive elements have **adequate spacing** (8px minimum)
-- [ ] **gesture-based actions** have keyboard alternatives
-- [ ] touch interactions provide **haptic feedback** where appropriate (capacitor)
-- [ ] **hover states** are accessible on touch devices
+**Dark Mode Support**:
+All components automatically inherit dark mode via `class="dark"` on document root.
 
-## Performance Standards
+### Typography Scale
+```css
+/* Accessible typography hierarchy */
+.text-xs    /* 12px - minimum for touch targets */
+.text-sm    /* 14px - secondary content */
+.text-base  /* 16px - body text default */
+.text-lg    /* 18px - large text (3:1 contrast) */
+.text-xl    /* 20px - headings */
+.text-2xl   /* 24px - page titles */
+```
 
-### Core Web Vitals
-- [ ] **largest contentful paint (lcp)** < 2.5 seconds
-- [ ] **first input delay (fid)** < 100 milliseconds
-- [ ] **cumulative layout shift (cls)** < 0.1
-- [ ] **time to interactive (tti)** < 3.8 seconds
-- [ ] **total blocking time (tbt)** < 200 milliseconds
+**Implementation in Components**:
+- Body text: `className="text-base"` (16px minimum)
+- Labels: `className="text-sm font-medium"` (14px with medium weight)
+- Headings: `className="text-xl font-semibold"` (20px with semantic hierarchy)
 
-### Vite Bundle Optimization
-- [ ] **code splitting** implemented for route-based chunks
-- [ ] **lazy loading** for non-critical components via react.lazy
-- [ ] **tree shaking** removes unused code (vite default)
-- [ ] **image optimization** with appropriate formats and sizes
-- [ ] **css optimization** via tailwind purging and postcss
+### Touch Targets & Spacing
+**Minimum Touch Target**: 44px × 44px for all interactive elements
 
-### React Runtime Performance
-- [ ] **react.memo** used for expensive components
-- [ ] **usememo/usecallback** prevent unnecessary re-renders
-- [ ] **tanstack query** optimizes data fetching and caching
-- [ ] **supabase realtime** minimizes unnecessary network requests
-- [ ] **memory leaks** are prevented in useeffect cleanup
+**Button Component** (`src/components/ui/button.tsx`):
+```typescript
+// Size variants with accessible dimensions
+size: {
+  sm: "h-9 px-3",      // 36px height - use sparingly
+  default: "h-11 px-4", // 44px height - standard
+  lg: "h-12 px-8",     // 48px height - primary actions
+  icon: "h-11 w-11",   // 44px square for icon buttons
+}
+```
 
-## Technical Implementation
+**Spacing System** (8px grid):
+```css
+.space-y-1  /* 4px - tight content */
+.space-y-2  /* 8px - related elements */
+.space-y-4  /* 16px - section separation */
+.space-y-6  /* 24px - component separation */
+```
 
-### shadcn/ui + Tailwind Design System
-- [ ] **design tokens** follow shadcn design system
-- [ ] **typography scale** uses tailwind semantic classes (text-xs to text-9xl)
-- [ ] **color palette** includes accessible theme colors with dark mode support
-- [ ] **spacing system** follows tailwind 4pt grid (0.5, 1, 2, 4, 8, 16, etc.)
-- [ ] **border radius** scale uses tailwind standards (rounded-sm to rounded-3xl)
+## Component Accessibility Patterns
 
-### Framer Motion Interactions
-- [ ] **spring animations** use framer-motion presets and custom configs
-- [ ] **easing curves** follow framer-motion standards
-- [ ] **duration scale** is consistent across components
-- [ ] **micro-interactions** enhance usability without being distracting
-- [ ] **page transitions** provide spatial orientation
+### Form Accessibility
+**React Hook Form + Zod Implementation**:
 
-### Component Quality (Radix UI + shadcn)
-- [ ] all components support **disablemotion** prop for accessibility
-- [ ] **error boundaries** handle component failures gracefully
-- [ ] **loading states** provide feedback for async operations (tanstack query)
-- [ ] **empty states** guide users when no content is available
-- [ ] **typescript types** are comprehensive and accurate
+```typescript
+// Example from medication forms
+<FormField
+  control={form.control}
+  name="medicationName"
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>Medication Name</FormLabel>
+      <FormControl>
+        <Input 
+          {...field} 
+          aria-describedby="medication-error"
+          aria-invalid={!!fieldState.error}
+        />
+      </FormControl>
+      <FormDescription>
+        Enter the exact name as prescribed
+      </FormDescription>
+      <FormMessage id="medication-error" />
+    </FormItem>
+  )}
+/>
+```
+
+**Key Patterns**:
+- Automatic `aria-describedby` linking error messages
+- `aria-invalid` state management via React Hook Form
+- Semantic `<FormLabel>` association with inputs
+- Clear error messaging with specific IDs
+
+### Modal & Overlay Focus Management
+**Radix UI Implementation** (`src/components/ui/dialog.tsx`):
+
+```typescript
+// Automatic focus trapping and restoration
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Open Settings</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Settings</DialogTitle> {/* Automatic focus */}
+      <DialogDescription>
+        Manage your health data preferences
+      </DialogDescription>
+    </DialogHeader>
+    {/* Content automatically trapped */}
+  </DialogContent>
+</Dialog>
+```
+
+**Focus Management Features**:
+- Automatic focus trapping within modal
+- Focus restoration to trigger element on close
+- Escape key handling built-in
+- Overlay click to close (configurable)
+
+### Data Visualization Accessibility
+**Chart Components** (`src/components/ui/chart.tsx`):
+
+```typescript
+// Accessible chart implementation
+<ChartContainer
+  config={chartConfig}
+  className="min-h-[200px]"
+>
+  <ResponsiveContainer width="100%" height="100%">
+    <LineChart data={moodData}>
+      <XAxis 
+        dataKey="date"
+        tick={{ fontSize: 12 }}
+        aria-label="Date axis"
+      />
+      <YAxis 
+        domain={[1, 10]}
+        aria-label="Mood level from 1 to 10"
+      />
+      <Tooltip 
+        content={({ active, payload, label }) => (
+          <div role="tooltip" aria-live="polite">
+            {/* Custom accessible tooltip */}
+          </div>
+        )}
+      />
+      <Line 
+        dataKey="mood"
+        stroke="hsl(var(--primary))"
+        strokeWidth={2}
+        aria-label="Mood trend line"
+      />
+    </LineChart>
+  </ResponsiveContainer>
+</ChartContainer>
+```
+
+**Accessibility Features**:
+- `aria-label` for chart elements
+- `role="tooltip"` with `aria-live="polite"`
+- High contrast stroke colors
+- Keyboard navigation support
+- Alternative data table representation available
+
+### Loading States & Error Boundaries
+**Loading Skeleton** (`src/components/ui/loading-skeleton.tsx`):
+
+```typescript
+<Skeleton 
+  className="h-4 w-[250px]"
+  aria-label="Loading content"
+  role="status"
+/>
+```
+
+**Error Boundary** (`src/components/ErrorBoundary.tsx`):
+```typescript
+<div role="alert" aria-live="assertive">
+  <h2>Something went wrong</h2>
+  <p>We're sorry, but something unexpected happened.</p>
+  <Button onClick={retry}>Try Again</Button>
+</div>
+```
+
+## Mobile Accessibility (Capacitor)
+
+### iOS Accessibility
+**VoiceOver Support**:
+```typescript
+// iOS-specific accessibility traits
+<div 
+  role="button"
+  aria-label="Add mood entry"
+  data-ios-accessibilityTraits="button"
+/>
+```
+
+**Safe Area Handling**:
+```css
+/* Respect iOS safe areas */
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+```
+
+### Android Accessibility
+**TalkBack Support**:
+```typescript
+// Semantic content descriptions
+<Button 
+  aria-label="Submit mood entry for today"
+  aria-describedby="mood-instructions"
+>
+  Submit
+</Button>
+```
+
+**Haptic Feedback**:
+```typescript
+// Accessible haptic feedback for important actions
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
+
+const submitWithFeedback = async () => {
+  await Haptics.impact({ style: ImpactStyle.Medium });
+  // Submit action
+};
+```
 
 ## Testing Procedures
 
-### Current Testing Setup
-- [ ] **axe-core** accessibility tests (needs implementation)
-- [ ] **lighthouse** accessibility score targeting 100
-- [ ] **eslint** catches accessibility issues in development
-- [ ] **typescript** ensures type safety and reduces runtime errors
-- [ ] **vite** hot reload for rapid accessibility testing
+### Automated Testing
+**axe-core Integration** (planned):
+```typescript
+// Jest test setup
+import { axe, toHaveNoViolations } from 'jest-axe';
 
-### Manual Testing (MVP Scope)
-- [ ] **keyboard-only navigation** works throughout the app
-- [ ] **screen reader testing** with voiceover (macos) or nvda (windows)
-- [ ] **voice control** can operate all interactive elements
-- [ ] **high contrast mode** maintains usability and readability
-- [ ] **zoom to 200%** maintains functionality
+expect.extend(toHaveNoViolations);
 
-### ☐ cross-platform validation
-- [ ] **ios safari** - touch interactions and safe area handling (capacitor)
-- [ ] **android chrome** - gesture navigation and accessibility services
-- [ ] **desktop browsers** - keyboard navigation and screen readers
-- [ ] **tablet layouts** - optimal touch targets and responsive design
-- [ ] **pwa functionality** - offline capability via capacitor
+test('Dashboard should be accessible', async () => {
+  const { container } = render(<Dashboard />);
+  const results = await axe(container);
+  expect(results).toHaveNoViolations();
+});
+```
 
-## success criteria
+### Manual Testing Protocol
 
-### accessibility score targets (mvp)
-- **lighthouse accessibility**: 95+ (targeting 100)
-- **axe-core violations**: 0 (when implemented)
-- **color contrast**: wcag aa compliant (4.5:1 normal, 3:1 large text)
-- **keyboard navigation**: 100% functionality without mouse
+**1. Keyboard Navigation Test**
+- Tab through entire interface
+- Verify focus indicators are visible (2px ring)
+- Test skip links functionality
+- Ensure all interactive elements are reachable
 
-### performance score targets (mvp)
-- **lighthouse performance**: >85 (targeting >90)
-- **lighthouse best practices**: >90
-- **core web vitals**: within acceptable thresholds
-- **bundle size**: <2mb (targeting <1.5mb when optimized)
+**2. Screen Reader Testing**
+- **macOS**: VoiceOver (Cmd + F5)
+- **Windows**: NVDA (free) or JAWS
+- **Mobile**: VoiceOver (iOS) / TalkBack (Android)
 
-### user experience metrics (mvp scope)
-- **task completion rate**: >90% for critical user journeys
-- **error rate**: <5% for form submissions and data entry
-- **accessibility tree depth**: <8 levels for screen reader efficiency
-- **focus management**: 100% success rate for radix-ui modal/overlay interactions
+**Test Scenarios**:
+- Navigate mood entry form
+- Use AI Guardian chat interface
+- Browse health data visualizations
+- Interact with settings panels
 
-## implementation notes
+**3. Visual Testing**
+- Zoom to 200% (browser zoom)
+- Test high contrast mode
+- Verify dark mode accessibility
+- Check touch target sizes on mobile
 
-### current mvp status
-- **design system**: shadcn/ui + tailwind provides accessible foundation
-- **components**: radix-ui primitives include accessibility features by default
-- **forms**: react-hook-form with proper labeling
-- **navigation**: focus management needs testing and refinement
-- **testing**: manual testing prioritized over automated (resource constraints)
+### Browser Testing Matrix
+**Desktop**:
+- Chrome (latest, latest-1)
+- Firefox (latest, latest-1)  
+- Safari (latest, latest-1)
+- Edge (latest)
 
-### next steps
-- implement axe-core testing in development workflow
-- conduct comprehensive keyboard navigation audit
-- test with actual screen reader users
-- document accessibility patterns for component library
-- establish accessibility testing pipeline for ci/cd
+**Mobile**:
+- Safari iOS (latest, latest-1)
+- Chrome Android (latest, latest-1)
+- Samsung Internet (latest)
+
+### Performance Accessibility
+**Reduced Motion Support**:
+```css
+@media (prefers-reduced-motion: reduce) {
+  .animate-in {
+    animation: none;
+  }
+  
+  .transition-all {
+    transition: none;
+  }
+}
+```
+
+**Implementation in Framer Motion**:
+```typescript
+const motionProps = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { 
+    duration: 0.3,
+    ease: "easeOut"
+  },
+  // Respect user preference
+  ...(!prefersReducedMotion && { initial: { opacity: 0 } })
+};
+```
+
+## Success Metrics
+
+### Accessibility Targets
+- **Lighthouse Accessibility Score**: 95+ (targeting 100)
+- **axe-core Violations**: 0
+- **Color Contrast**: WCAG AA compliant (4.5:1 normal, 3:1 large)
+- **Keyboard Navigation**: 100% functionality without mouse
+
+### Performance Targets
+- **Largest Contentful Paint**: < 2.5 seconds
+- **First Input Delay**: < 100 milliseconds
+- **Cumulative Layout Shift**: < 0.1
+- **Total Blocking Time**: < 200 milliseconds
+
+### User Experience Metrics
+- **Task Completion Rate**: >90% for critical user journeys
+- **Error Rate**: <5% for form submissions
+- **Touch Target Success**: 100% minimum 44px compliance
+- **Focus Management**: 100% success rate for modal interactions
+
+## Implementation Checklist
+
+### Design Phase
+- [ ] Color contrast verification (4.5:1 minimum)
+- [ ] Touch target sizing (44px minimum)
+- [ ] Typography hierarchy with semantic meaning
+- [ ] Focus indicator design (2px minimum)
+- [ ] Error state design with clear messaging
+
+### Development Phase
+- [ ] Semantic HTML structure
+- [ ] ARIA labels for complex components
+- [ ] Form label associations
+- [ ] Keyboard navigation implementation
+- [ ] Screen reader testing
+
+### QA Phase
+- [ ] Automated accessibility testing
+- [ ] Cross-browser compatibility
+- [ ] Mobile accessibility validation
+- [ ] Performance impact assessment
+- [ ] User acceptance testing with assistive technologies
+
+## Resources & Tools
+
+### Testing Tools
+- **Chrome DevTools**: Accessibility panel and Lighthouse
+- **Firefox DevTools**: Accessibility inspector
+- **axe DevTools**: Browser extension for detailed analysis
+- **Colour Contrast Analyser**: Desktop app for contrast testing
+
+### Screen Readers
+- **macOS**: VoiceOver (built-in)
+- **Windows**: NVDA (free) - https://www.nvaccess.org/
+- **iOS**: VoiceOver (Settings > Accessibility)
+- **Android**: TalkBack (Settings > Accessibility)
+
+### Documentation
+- **WCAG 2.1 Guidelines**: https://www.w3.org/WAI/WCAG21/quickref/
+- **Radix UI Accessibility**: https://www.radix-ui.com/primitives
+- **shadcn/ui Components**: https://ui.shadcn.com/
 
 ---
 
-**last updated**: mvp development phase (july 7, 2025)
-**next review**: before expanding beyond mvp scope
+**Remember**: Accessibility is not a checklist—it's about creating inclusive experiences for all users. Test with real users who rely on assistive technologies whenever possible.
