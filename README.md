@@ -141,7 +141,7 @@ Navigate to `/testing` for the comprehensive validation framework. See [complete
 - **Backend:** Supabase (PostgreSQL, Auth, Edge Functions)  
 - **AI Models:** Multi-provider orchestration via OpenRouter
 - **Mobile:** Capacitor for iOS/Android, PWA capabilities
-- **Security:** Row-Level Security, PII sanitization, session hardening
+- **Security:** Enterprise-grade security with Row-Level Security, PII sanitization, encrypted storage, audit trails, and session hardening
 
 ### Data Pipeline
 - **Sensor Integration:** Sleep, activity, mood, and medication tracking
@@ -164,6 +164,8 @@ This implementation builds on established research in digital phenotyping and pe
 Bipolar Guardian is a working MVP that validates the technical approach to adaptive personalization in mental health monitoring. The system demonstrates how exponentially weighted baselines, multi-model orchestration, and embedded validation can be integrated into a coherent user experience.
 
 **Current Focus:** System validation and quality assurance through the embedded testing framework. While clinically inspired, this implementation prioritizes technical proof-of-concept over medical validation.
+
+**Clinical Validation:** The current system provides development QA validation, not clinical validation. For healthcare claims, see our [evidence-based clinical validation roadmap](docs/CLINICAL_VALIDATION.md) outlining the path from current MVP to FDA-compliant medical device.
 
 ## Contributing
 
