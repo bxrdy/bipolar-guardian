@@ -31,6 +31,9 @@ secrets/
 .vscode/*
 !.vscode/extensions.json
 .idea
+.cursor/
+.superdesign/
+.windsurfrules
 .DS_Store
 *.suo
 *.ntvs*
@@ -40,7 +43,6 @@ secrets/
 
 # OS generated files
 Thumbs.db
-.DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
@@ -51,7 +53,18 @@ ehthumbs.db
 *.temp
 .cache
 
+# Testing and coverage
+coverage/
+*.lcov
+.nyc_output
+
+# Build tools and package managers
+.pnpm-store/
+.yarn/
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
 # Internal development files
 CLAUDE.md
-docs/project/weekly-updates/
-src/components/testing/ACCURACY_METRICS_IMPLEMENTATION.md
