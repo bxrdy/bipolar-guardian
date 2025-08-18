@@ -37,18 +37,13 @@ The system uses exponentially weighted moving averages with context-aware window
 ### Multi-Model Orchestration
 
 ```mermaid
-graph TD
-    A[User Query] --> B[Context Assembly]
-    B --> C[Sanitize PII]
-    C --> D[Primary Model]
-    D --> E{Success?}
+graph LR
+    A[User Query] --> B[Context Assembly] --> C[Sanitize PII]
+    C --> D[Primary Model] --> E{Success?}
     E -->|Yes| F[Response]
-    E -->|No| G[Preserve Context]
-    G --> H[Fallback Model]
-    H --> I{Success?}
+    E -->|No| G[Preserve Context] --> H[Fallback Model] --> I{Success?}
     I -->|Yes| F
-    I -->|No| J[Next Fallback]
-    J --> F
+    I -->|No| J[Next Fallback] --> F
 ```
 
 State-preserving fallback maintains therapeutic context across model failures. When the primary model is unavailable, the system automatically switches while retaining the full conversation history and sanitized health context.
