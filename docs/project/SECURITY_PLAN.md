@@ -17,7 +17,7 @@ This document outlines the successful implementation of a multi-phase security i
 ## Implemented Phases & Enhancements
 
 ### Phase 1: Critical RLS Policy Gaps ✅ **COMPLETED**
-- **Achievement**: Closed all identified gaps in our Row-Level Security policies, particularly for `DELETE` operations. This ensures users can only ever affect their own data.
+- **Achievement**: Closed all identified gaps in the Row-Level Security policies, particularly for `DELETE` operations. This ensures users can only ever affect their own data.
 - **Impact**: Critical vulnerability resolved with zero impact on user functionality.
 
 ### Phase 2: Medical Data Protection ✅ **COMPLETED**

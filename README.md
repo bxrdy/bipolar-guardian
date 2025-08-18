@@ -1,175 +1,209 @@
-<div align="center">
+# Bipolar Guardian
 
-<h1>bipolar-guardian</h1>
-<h3>personalized ai-powered mental health platform</h3>
-<p><em>sophisticated monitoring with comprehensive testing framework</em></p>
+**Adaptive digital phenotyping via multi-model orchestration and evolving personal baselines**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)](https://supabase.com/)
-[![mvp status](https://img.shields.io/badge/status-mvp%20development-orange)](https://github.com/bxrdy/bipolar-guardian)
+Bipolar Guardian treats personalization as architecture, not a setting. Instead of static population thresholds, it builds individual baselines that adapt to medication changes, life transitions, and personal patterns-turning "your normal vs. the population's normal" into working code.
 
-</div>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Status](https://img.shields.io/badge/status-MVP%2Fproof--of--concept-orange)](https://github.com/bxrdy/bipolar-guardian) [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/) [![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)](https://supabase.com/)
 
----
+**Preprint:** [https://doi.org/10.5281/zenodo.16800716](https://doi.org/10.5281/zenodo.16800716)
 
-## what is bipolar guardian?
+## New to Digital Health Projects?
 
-**current status**: sophisticated development & quality assurance platform
+If terms like "EWMA," "multi-model orchestration," or "digital phenotyping" feel unfamiliar, that's completely normal! This project sits at the intersection of mental health, technology, and data science.
 
-comprehensive mental health monitoring application designed for individuals managing bipolar disorder, featuring ai-powered analysis, personal baseline calculation, and advanced testing infrastructure.
+**👋 [Start here for a friendly introduction](docs/BEGINNER_GUIDE.md)** that explains the "why" and "what" behind this work in everyday language.
 
-<details>
-<summary><strong>core capabilities</strong></summary>
+Already comfortable with technical concepts? Continue reading below.
 
-### development platform
-- **testing framework**: 7-tab validation system with real api integration
-- **ai integration**: 4 chat models + 2 document analysis models with smart fallback
-- **personal analytics**: statistical baseline calculation and pattern recognition
-- **security**: row-level data isolation, pii sanitization, encrypted storage
-- **validation**: sophisticated simulation replacing fake metrics with structured evaluation
+## Technical Architecture
 
-### current limitations
-- **not clinically validated** for medical accuracy claims
-- **mvp implementation** with realistic test data, not production-scale
-- **requires significant investment** ($350k-900k) for clinical validation
+### Personal Baseline Evolution
 
-</details>
-
----
-
-## choose your path
-
-**👨‍💻 developers** — *contribute or explore the tech*  
-├─ **[installation guide](docs/developer/INSTALLATION.md)**  
-├─ **[testing framework](docs/developer/TESTING_GUIDE.md)**  
-└─ **[contribution guide](docs/developer/README.md)**
-
-**🏥 healthcare professionals** — *evaluate clinical potential*  
-├─ **[accuracy assessment](docs/project/ACCURACY_PLAN.md)**  
-├─ **[clinical validation](docs/project/CLINICAL_VALIDATION_GUIDE.md)**  
-└─ **[security plan](docs/project/SECURITY_PLAN.md)**
-
-**🔬 researchers** — *ai & algorithm deep dive*  
-├─ **[ai architecture](docs/technical/AI_ARCHITECTURE.md)**  
-├─ **[baseline algorithm](docs/technical/BASELINE_ALGORITHM.md)**  
-└─ **[technical overview](docs/technical/TECHNICAL_OVERVIEW.md)**
-
-**👤 users** — *application walkthrough*  
-├─ **[getting started](docs/user/USER_GUIDE.md)**  
-└─ **[user resources](docs/user/README.md)**
-
----
-
-## technical implementation
-
-| component | technology |
-|-----------|------------|
-| **frontend** | react 18, typescript, tailwind css, shadcn/ui |
-| **backend** | supabase (postgresql, auth, edge functions) |
-| **ai models** | 4 chat + 2 document analysis via openrouter |
-| **mobile** | capacitor (ios/android), pwa |
-| **analytics** | statistical baseline calculation, tanstack query |
-| **testing** | custom validation framework, edge functions |
-
----
-
-## development status
-
-### current phase: mvp with sophisticated simulation
-- ✓ **validation system**: replaced math.random() with structured api evaluation
-- ✓ **testing infrastructure**: 7-category validation with edge functions
-- ✓ **ai context**: medical document processing and therapeutic validation
-- ✓ **documentation**: complete reorganization with honest assessment
-
-### mvp scope vs full implementation
-- **ai models**: currently 4 chat + 2 document (designed for 20+ model support)
-- **data**: realistic test data and sophisticated simulation
-- **validation**: algorithmic assessment (not clinical expert review)
-- **scope**: development platform (not medical device)
-
-<details>
-<summary><strong>clinical validation pathway</strong></summary>
-
-### path to clinical validation
-- **ground truth integration**: expert-validated datasets (mimic-iii, i2b2, daic-woz)
-- **professional review**: licensed therapist evaluation of ai responses
-- **outcome correlation**: patient improvement tracking studies
-- **regulatory compliance**: fda pathway for medical device classification
-
-**investment required**: $350k-900k over 18-36 months
-
-see [clinical validation plan](docs/project/ACCURACY_PLAN.md) for complete analysis
-
-</details>
-
----
-
-## documentation
-
-### quick access
-- **[installation guide](docs/developer/INSTALLATION.md)** - complete setup
-- **[testing framework](docs/developer/TESTING_GUIDE.md)** - validation system
-- **[accuracy assessment](docs/project/ACCURACY_PLAN.md)** - current vs clinical validation
-- **[ai architecture](docs/technical/AI_ARCHITECTURE.md)** - multi-model system design
-- **[security plan](docs/project/SECURITY_PLAN.md)** - privacy & data protection
-
-<details>
-<summary><strong>complete documentation structure</strong></summary>
-
-```
-docs/
-├── developer/          # setup, testing, contribution
-├── project/           # accuracy, validation, security
-├── technical/         # ai architecture, algorithms
-└── user/             # getting started, workflows
+```mermaid
+graph LR
+    A[Initial 7 Days] --> B[Bootstrap Baseline μ, σ]
+    B --> C[EWMA Updates]
+    C --> D{Medication Change?}
+    D -->|Yes| E[Adjust Context Window]
+    D -->|No| F[Standard Window]
+    E --> G[Recalibrated Baseline]
+    F --> G
+    G --> H[Z-Score Risk Calculation]
 ```
 
-</details>
+The system uses exponentially weighted moving averages with context-aware windowing. When medication changes are detected, it temporarily shortens the effective window to emphasize post-change data while preserving historical context.
+
+### Multi-Model Orchestration
+
+```mermaid
+graph TD
+    A[User Query] --> B[Context Assembly]
+    B --> C[Sanitize PII]
+    C --> D[Primary Model]
+    D --> E{Success?}
+    E -->|Yes| F[Response]
+    E -->|No| G[Preserve Context]
+    G --> H[Fallback Model]
+    H --> I{Success?}
+    I -->|Yes| F
+    I -->|No| J[Next Fallback]
+    J --> F
+```
+
+State-preserving fallback maintains therapeutic context across model failures. When the primary model is unavailable, the system automatically switches while retaining the full conversation history and sanitized health context.
+
+### Risk Scoring Pipeline
+
+```mermaid
+graph LR
+    A[Daily Metrics] --> B[Personal Baseline μ, σ]
+    B --> C[Z-Score: (x-μ)/σ]
+    C --> D[Weighted Aggregation]
+    D --> E{Risk Level}
+    E --> F[Green: Normal Range]
+    E --> G[Amber: 1-2σ Deviation] 
+    E --> H[Red: >2σ Deviation]
+    F --> I[Natural Language Explanation]
+    G --> I
+    H --> I
+```
+
+## Core Capabilities
+
+### Adaptive Personalization
+- **Dynamic baselines** that evolve with life changes
+- **Medication-aware windowing** for accurate post-change recalibration  
+- **Individual normal ranges** rather than population averages
+- **Transparent Z-score calculations** with natural language explanations
+
+### Resilient AI Integration
+- **Multi-model portfolio** with automatic failover
+- **Context preservation** across model switches
+- **PII-minimized prompts** with sanitized health context
+- **Therapeutic boundaries** with crisis resource routing
+
+### Embedded Validation
+- **Testing harness** integrated into production
+- **Real-time quality assurance** during development
+- **Medical terminology validation** via edge functions
+- **Therapeutic response evaluation** against safety rubrics
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- A [Supabase](https://supabase.com) account (free tier works)
+- OpenRouter API key for AI models
+
+### Quick Setup
+```bash
+git clone https://github.com/bxrdy/bipolar-guardian
+cd bipolar-guardian
+npm install
+```
+
+### Supabase Configuration
+
+1. **Create a new Supabase project** at [database.new](https://database.new)
+
+2. **Set up your environment variables** - Create `.env.local`:
+```env
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+3. **Run database migrations** to set up the schema:
+```bash
+npx supabase link --project-ref your-project-ref
+npx supabase db push
+```
+
+4. **Deploy edge functions** for AI processing:
+```bash
+npx supabase functions deploy
+```
+
+5. **Configure OpenRouter API key** in your Supabase project's Edge Function secrets:
+```bash
+npx supabase secrets set OPENROUTER_API_KEY=your_openrouter_key
+```
+
+6. **Create a test account** - Use your own email/password (no hardcoded test credentials)
+
+7. **Start the development server**:
+```bash
+npm run dev
+```
+
+### Testing & Validation
+Navigate to `/testing` for the comprehensive validation framework:
+
+- **🔍 Validation** - System health checks and runlists
+- **📊 Accuracy** - AI performance and regression analysis  
+- **🤖 Guardian** - Conversational AI quality assurance
+- **📄 Documents** - Medical document processing validation
+- **⚙️ Controls** - Feature management and data generation
+- **🗄️ Tables** - Database integrity inspection
+- **❌ Errors** - Exception tracking and debugging
+
+## System Architecture
+
+### Technology Stack
+- **Frontend:** React 18, TypeScript, Tailwind CSS, shadcn/ui
+- **Backend:** Supabase (PostgreSQL, Auth, Edge Functions)  
+- **AI Models:** Multi-provider orchestration via OpenRouter
+- **Mobile:** Capacitor for iOS/Android, PWA capabilities
+- **Security:** Row-Level Security, PII sanitization, session hardening
+
+### Data Pipeline
+- **Sensor Integration:** Sleep, activity, mood, and medication tracking
+- **Baseline Calculation:** EWMA with exponential decay (15-day half-life)
+- **Risk Assessment:** Z-score aggregation with configurable weights
+- **Document Analysis:** Encrypted clinical document processing
+- **Validation:** Continuous quality assurance embedded in production
+
+## Research Foundation
+
+This implementation builds on established research in digital phenotyping and personalized mental health monitoring:
+
+- **Digital Phenotyping:** [Onnela & Rauch (2016)](https://www.nature.com/articles/npp2016262) - foundational work on smartphone-based behavioral monitoring
+- **Wearable Predictors:** [Lim et al. (2024)](https://www.nature.com/articles/s41746-024-01349-6) - sleep and circadian features for mood episode prediction  
+- **Personalization Frameworks:** [Song et al. (2024)](https://mental.jmir.org/2024/1/e59512) - macro-micro approaches for individual vs. population modeling
+- **Conversational AI Ethics:** [Rahsepar Meadi et al. (2025)](https://mental.jmir.org/2025/1/e60432) - scoping review of CAI in mental health care
+
+## Development Status
+
+Bipolar Guardian is a working MVP that validates the technical approach to adaptive personalization in mental health monitoring. The system demonstrates how exponentially weighted baselines, multi-model orchestration, and embedded validation can be integrated into a coherent user experience.
+
+**Current Focus:** System validation and quality assurance through the embedded testing framework. While clinically inspired, this implementation prioritizes technical proof-of-concept over medical validation.
+
+## Contributing
+
+Contributions from developers interested in digital health, adaptive systems, UI/UX design, and human-AI interaction welcomed:
+
+1. **Technical contributions:** Baseline algorithms, model orchestration, validation frameworks
+2. **Research collaboration:** Digital phenotyping, personalization methods, conversational AI safety
+3. **Clinical input:** Mental health professionals interested in reviewing therapeutic approaches
+
+See [complete setup guide](docs/developer/SETUP.md) for detailed setup and contribution guidelines.
+
+## Transparency & Limitations
+
+**What this system provides:**
+- Sophisticated personal baseline adaptation with transparent algorithmic reasoning
+- Resilient multi-model AI guidance with clear therapeutic boundaries  
+- Embedded validation harness for continuous quality improvement
+- Open-source reference implementation for adaptive personalization patterns
+
+**What this system does not provide:**
+- Medical diagnosis or treatment recommendations
+- Clinically validated outcomes or FDA approval
+- Replacement for professional mental health care
+- Production-scale deployment without additional validation
 
 ---
 
-## contributing
+**Built for the intersection of human-centered design and adaptive AI systems.**
 
-### developers
-1. review [developer guide](docs/developer/README.md)
-2. follow [installation instructions](docs/developer/INSTALLATION.md)
-3. run [testing framework](docs/developer/TESTING_GUIDE.md)
-4. submit prs with comprehensive tests
-
-### healthcare professionals
-- review [clinical validation plan](docs/project/ACCURACY_PLAN.md)
-- provide feedback on therapeutic approaches
-- explore partnership opportunities
-
-### researchers
-- examine [ai architecture](docs/technical/AI_ARCHITECTURE.md)
-- review [baseline algorithm](docs/technical/BASELINE_ALGORITHM.md)
-- contribute validation methodologies
-
----
-
-## transparency & ethics
-
-### what we've built
-- **sophisticated development tool** with algorithmic validation
-- **quality assurance system** for catching errors and testing improvements
-- **mvp implementation** with realistic simulation and structured evaluation
-- **transparent documentation** about current capabilities vs clinical validation
-
-### honest limitations
-- **not medical advice**: provides supportive insights, not diagnoses
-- **development platform**: sophisticated simulation, not clinical validation
-- **mvp scope**: 4+2 ai models, test data, algorithmic assessment
-- **investment required**: significant funding needed for clinical pathway
-
----
-
-<div align="center">
-
-**built with transparency for the mental health development community**
-
-[LinkedIn](https://www.linkedin.com/in/brddy/) • [GitHub](https://github.com/bxrdy) • [Medium](https://medium.com/@brddy)
-
-</div>
+[Setup Guide](docs/developer/SETUP.md) • [Algorithms](docs/technical/ALGORITHMS.md) • [Architecture](docs/technical/ARCHITECTURE.md) • [Research Paper](https://doi.org/10.5281/zenodo.16800716)

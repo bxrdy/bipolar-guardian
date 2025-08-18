@@ -64,4 +64,4 @@ The "Documents" tab includes a powerful system for generating realistic medical 
 - **AI Insight Triggers**: Generate documents specifically designed to test our AI's analytical capabilities (e.g., a document with an abnormal lab result).
 - **Advanced Generation**: Customize and batch-generate documents for more complex testing scenarios.
 
-This system is a critical part of our commitment to building a reliable and accurate AI. By allowing us to test our systems with a wide variety of realistic scenarios, we can ensure that Bipolar Guardian provides high-quality, trustworthy insights.
+This system is a critical part of the commitment to building reliable and accurate AI. By testing the system with a wide variety of realistic scenarios, Bipolar Guardian can provide high-quality, trustworthy insights.

@@ -50,3 +50,7 @@ ehthumbs.db
 *.tmp
 *.temp
 .cache
+
+# Internal development files
+CLAUDE.md
+docs/project/weekly-updates/
