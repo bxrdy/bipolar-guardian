@@ -1,8 +1,10 @@
-# accessibility & qa checklist
+# Accessibility & QA Checklist
 
-## wcag 2.1 aa compliance standards
+**[Documentation Hub](../README.md) > [Developer Documentation](README.md) > Accessibility**
 
-### ☐ color contrast & visual design
+## WCAG 2.1 AA Compliance Standards
+
+### Color Contrast & Visual Design
 - [ ] **4.5:1 contrast ratio** for normal text against background
 - [ ] **3:1 contrast ratio** for large text (18pt+ or 14pt+ bold)
 - [ ] **enhanced contrast mode** available via tailwind dark mode
@@ -10,7 +12,7 @@
 - [ ] focus indicators have **2px minimum thickness** with high contrast
 - [ ] text remains readable when zoomed to **200%**
 
-### ☐ keyboard navigation
+### Keyboard Navigation
 - [ ] all interactive elements are **keyboard accessible**
 - [ ] **tab order** is logical and predictable
 - [ ] **focus traps** work correctly in radix-ui modals and overlays
@@ -18,7 +20,7 @@
 - [ ] keyboard shortcuts are **documented and discoverable**
 - [ ] **escape key** closes modals and cancels actions
 
-### ☐ screen reader support
+### Screen Reader Support
 - [ ] **semantic markup** (headings h1-h6) follows proper hierarchy
 - [ ] **aria labels** are present for interactive elements
 - [ ] **aria live regions** announce dynamic content changes
@@ -26,76 +28,76 @@
 - [ ] **image alt text** is descriptive and meaningful
 - [ ] **table headers** are properly marked with scope attributes
 
-### ☐ motion & animation
+### Motion & Animation
 - [ ] **reduced motion** is respected when user prefers it (framer-motion)
 - [ ] animations do not exceed **3 flashes per second**
 - [ ] **auto-playing media** can be paused or stopped
 - [ ] motion serves a functional purpose and enhances usability
 - [ ] all animations have **reasonable duration** (< 5 seconds)
 
-### ☐ touch & interaction
+### Touch & Interaction
 - [ ] touch targets are **minimum 44px × 44px**
 - [ ] interactive elements have **adequate spacing** (8px minimum)
 - [ ] **gesture-based actions** have keyboard alternatives
 - [ ] touch interactions provide **haptic feedback** where appropriate (capacitor)
 - [ ] **hover states** are accessible on touch devices
 
-## performance standards
+## Performance Standards
 
-### ☐ core web vitals
+### Core Web Vitals
 - [ ] **largest contentful paint (lcp)** < 2.5 seconds
 - [ ] **first input delay (fid)** < 100 milliseconds
 - [ ] **cumulative layout shift (cls)** < 0.1
 - [ ] **time to interactive (tti)** < 3.8 seconds
 - [ ] **total blocking time (tbt)** < 200 milliseconds
 
-### ☐ vite bundle optimization
+### Vite Bundle Optimization
 - [ ] **code splitting** implemented for route-based chunks
 - [ ] **lazy loading** for non-critical components via react.lazy
 - [ ] **tree shaking** removes unused code (vite default)
 - [ ] **image optimization** with appropriate formats and sizes
 - [ ] **css optimization** via tailwind purging and postcss
 
-### ☐ react runtime performance
+### React Runtime Performance
 - [ ] **react.memo** used for expensive components
 - [ ] **usememo/usecallback** prevent unnecessary re-renders
 - [ ] **tanstack query** optimizes data fetching and caching
 - [ ] **supabase realtime** minimizes unnecessary network requests
 - [ ] **memory leaks** are prevented in useeffect cleanup
 
-## technical implementation
+## Technical Implementation
 
-### ☐ shadcn/ui + tailwind design system
+### shadcn/ui + Tailwind Design System
 - [ ] **design tokens** follow shadcn design system
 - [ ] **typography scale** uses tailwind semantic classes (text-xs to text-9xl)
 - [ ] **color palette** includes accessible theme colors with dark mode support
 - [ ] **spacing system** follows tailwind 4pt grid (0.5, 1, 2, 4, 8, 16, etc.)
 - [ ] **border radius** scale uses tailwind standards (rounded-sm to rounded-3xl)
 
-### ☐ framer-motion interactions
+### Framer Motion Interactions
 - [ ] **spring animations** use framer-motion presets and custom configs
 - [ ] **easing curves** follow framer-motion standards
 - [ ] **duration scale** is consistent across components
 - [ ] **micro-interactions** enhance usability without being distracting
 - [ ] **page transitions** provide spatial orientation
 
-### ☐ component quality (radix-ui + shadcn)
+### Component Quality (Radix UI + shadcn)
 - [ ] all components support **disablemotion** prop for accessibility
 - [ ] **error boundaries** handle component failures gracefully
 - [ ] **loading states** provide feedback for async operations (tanstack query)
 - [ ] **empty states** guide users when no content is available
 - [ ] **typescript types** are comprehensive and accurate
 
-## testing procedures
+## Testing Procedures
 
-### ☐ current testing setup
+### Current Testing Setup
 - [ ] **axe-core** accessibility tests (needs implementation)
 - [ ] **lighthouse** accessibility score targeting 100
 - [ ] **eslint** catches accessibility issues in development
 - [ ] **typescript** ensures type safety and reduces runtime errors
 - [ ] **vite** hot reload for rapid accessibility testing
 
-### ☐ manual testing (mvp scope)
+### Manual Testing (MVP Scope)
 - [ ] **keyboard-only navigation** works throughout the app
 - [ ] **screen reader testing** with voiceover (macos) or nvda (windows)
 - [ ] **voice control** can operate all interactive elements

@@ -1,4 +1,6 @@
-# Bipolar Guardian Testing Guide
+# Testing Guide
+
+**[Documentation Hub](../README.md) > [Developer Documentation](README.md) > Testing**
 
 *Your complete guide to testing, validating, and monitoring the Bipolar Guardian application.*
 

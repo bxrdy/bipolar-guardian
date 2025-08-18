@@ -1,5 +1,7 @@
 # Algorithm Implementation Details
 
+**[Documentation Hub](../README.md) > [Technical Documentation](README.md) > Algorithms**
+
 This document details the mathematical algorithms implemented in Bipolar Guardian, with references to the actual code implementations.
 
 ## Personal Baseline Calculation

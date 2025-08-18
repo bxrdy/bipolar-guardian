@@ -1,5 +1,7 @@
 # System Architecture
 
+**[Documentation Hub](../README.md) > [Technical Documentation](README.md) > Architecture**
+
 ## High-Level Architecture
 
 ```

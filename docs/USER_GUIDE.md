@@ -1,4 +1,6 @@
-# A Friendly Introduction to Bipolar Guardian
+# User Guide
+
+**[Documentation Hub](README.md) > User Guide**
 
 *If you're here, you might be curious about this project but aren't sure what terms like "digital phenotyping" or "EWMA" actually mean. That's perfectly normal! This guide explains everything in everyday language.*
 
@@ -69,3 +71,21 @@ The main README contains the technical overview if you're ready to dive into imp
 This is an open-source project, which means the code is freely available for anyone to study, use, or improve. If you have questions, suggestions, or just want to share your thoughts, feel free to open an issue on GitHub or explore the code.
 
 Mental health technology is an area where diverse perspectives and careful thinking really matter, so all constructive input is welcome.
+
+## Next Steps
+
+### Ready to Try It?
+- **[Getting Started](GETTING_STARTED.md)** - Quick setup and first steps
+- **[Developer Setup](developer/SETUP.md)** - Complete configuration guide
+
+### Want to Learn More?
+- **[Technical Documentation](technical/)** - Algorithms and system architecture
+- **[Clinical Validation](CLINICAL_VALIDATION.md)** - Research pathway and evidence base
+
+### Interested in Contributing?
+- **[Developer Documentation](developer/)** - Setup, testing, and contribution guides
+- **[GitHub Repository](https://github.com/bxrdy/bipolar-guardian)** - Source code and issues
+
+---
+
+**Need help navigating?** Return to the [Documentation Hub](README.md) for all available resources.

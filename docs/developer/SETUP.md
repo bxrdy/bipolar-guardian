@@ -1,5 +1,7 @@
 # Complete Setup Guide
 
+**[Documentation Hub](../README.md) > [Developer Documentation](README.md) > Setup**
+
 ## Prerequisites
 
 - **Node.js 18+** - [Install via nvm](https://github.com/nvm-sh/nvm#installing-and-updating) for version management
