@@ -54,3 +54,4 @@ ehthumbs.db
 # Internal development files
 CLAUDE.md
 docs/project/weekly-updates/
+src/components/testing/ACCURACY_METRICS_IMPLEMENTATION.md
