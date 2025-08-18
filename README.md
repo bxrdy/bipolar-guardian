@@ -57,13 +57,13 @@ State-preserving fallback maintains therapeutic context across model failures. W
 
 ```mermaid
 graph LR
-    A[Daily Metrics] --> B[Personal Baseline μ, σ]
-    B --> C[Z-Score: (x-μ)/σ]
+    A[Daily Metrics] --> B["Personal Baseline (mean, std)"]
+    B --> C["Z-Score: (x-mean)/std"]
     C --> D[Weighted Aggregation]
     D --> E{Risk Level}
     E --> F[Green: Normal Range]
-    E --> G[Amber: 1-2σ Deviation] 
-    E --> H[Red: >2σ Deviation]
+    E --> G["Amber: 1-2 std deviation"] 
+    E --> H["Red: >2 std deviation"]
     F --> I[Natural Language Explanation]
     G --> I
     H --> I
