@@ -6,7 +6,8 @@ Bipolar Guardian treats personalization as architecture, not a setting. Instead 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Status](https://img.shields.io/badge/status-MVP%2Fproof--of--concept-orange)](https://github.com/bxrdy/bipolar-guardian) [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://reactjs.org/) [![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)](https://supabase.com/)
 
-**Preprint:** [https://doi.org/10.5281/zenodo.16800716](https://doi.org/10.5281/zenodo.16800716)
+**Preprint:** <br>
+IEEE TechRxiv: [https://doi.org/10.36227/techrxiv.175616608.83160295/v1](https://doi.org/10.36227/techrxiv.175616608.83160295/v1) | Zenodo: [https://doi.org/10.5281/zenodo.16800716](https://doi.org/10.5281/zenodo.16800716)
 
 ## New to Digital Health Projects?
 
